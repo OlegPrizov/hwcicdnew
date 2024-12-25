@@ -1,0 +1,34 @@
+name: Deploy to Heroku
+
+on:
+  push:
+    branches:
+      - main  # Выполнять workflow при пуше в ветку main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Шаг 1: Клонировать репозиторий
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Шаг 2: Установить Python
+      - name: Set up Python environment
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'  # Версия Python
+
+      # Шаг 3: Установить зависимости
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      # Шаг 5: Деплой на Heroku
+      - name: Deploy to Heroku
+        uses: akhileshns/heroku-deploy@v3.12.12
+        with:
+          branch: "main"
+          heroku_api_key: ${{ secrets.HEROKU_API_KEY }}  # API ключ, добавленный в secrets
+          heroku_app_name: "olegprizov"  # Имя приложения на Heroku
+          heroku_email: "oleg12345prisov@gmail.com"  # Ваша почта, связанная с Heroku
