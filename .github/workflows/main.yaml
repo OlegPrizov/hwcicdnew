@@ -24,6 +24,12 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
+      # Шаг 4: Установить Heroku CLI
+      - name: Install Heroku CLI
+        run: |
+          curl https://cli-assets.heroku.com/install.sh | sh
+          echo "Heroku CLI installed"
+
       # Шаг 5: Деплой на Heroku
       - name: Deploy to Heroku
         uses: akhileshns/heroku-deploy@v3.12.12
