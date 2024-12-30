@@ -1,13 +1,3 @@
-# from flask import Flask
-
-# app = Flask(__name__)
-
-# @app.route('/')
-# def hello_world():
-#     return "Hello, World!"
-
-# if __name__ == '__main__':
-#     app.run(debug=True)
 from flask import Flask, render_template, request, session
 from datetime import datetime
 import random
@@ -42,5 +32,8 @@ def home():
         session['question'] = question
     return render_template('index.html', current_time=current_time, question=session['question'], result=result)
 
-if __name__ == '__main__':
+def main():
     app.run()
+
+if __name__ == '__main__':
+    main()
